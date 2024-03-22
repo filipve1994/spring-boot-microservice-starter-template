@@ -23,6 +23,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
+        <spring-boot.version>${project.parent.version}</spring-boot.version>
         <spring-boot-admin.version>3.2.1</spring-boot-admin.version>
         <spring-cloud.version>2023.0.0</spring-cloud.version>
         <spring-modulith.version>1.1.3</spring-modulith.version>
@@ -31,10 +32,254 @@
 
         <pebble-spring-boot.version>3.2.2</pebble-spring-boot.version>
 
+        <modelmapper.version>3.2.0</modelmapper.version>
+        <jsonwebtoken.version>0.12.5</jsonwebtoken.version>
+        <net.datafaker.version>2.1.0</net.datafaker.version>
+        <jansi.version>2.4.1</jansi.version>
+        <jakarta-json.version>2.0.1</jakarta-json.version>
+
+        <auth0-java-jwt.version>4.4.0</auth0-java-jwt.version>
+
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+
+        <jsoup.version>1.17.2</jsoup.version>
+
+        <hypersistence-utils-hibernate-60.version>3.7.3</hypersistence-utils-hibernate-60.version>
+
+        <error-handling-spring-boot-starter.version>4.2.0</error-handling-spring-boot-starter.version>
+        <junit-pioneer.version>2.2.0</junit-pioneer.version>
+
+        <apache-commons-io.version>2.15.1</apache-commons-io.version>
+        <apache-commons-collections4.version>4.4</apache-commons-collections4.version>
+        <apache-commons-text.version>1.11.0</apache-commons-text.version>
+        <apache-commons-math3.version>3.6.1</apache-commons-math3.version>
+        <apache-commons-validator.version>1.7</apache-commons-validator.version>
+
+        <google-guava.version>33.1.0-jre</google-guava.version>
+        <findbugs.version>3.0.2</findbugs.version>
+        <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
+        <error_prone_annotations.version>2.23.0</error_prone_annotations.version>
+        <spotbugs-annotations.version>4.8.2</spotbugs-annotations.version>
+        <spotify-format-mvn-plugin.version></spotify-format-mvn-plugin.version>
+
+        <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
+
+        <net.sf.jasperreports.version>6.21.0</net.sf.jasperreports.version>
+
+        <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
+        <sonar.exclusions>
+            **/dto/**,
+            **/entity/**,
+            **/exception/**
+        </sonar.exclusions>
+
+        <!-- override official spring-boot-starter-parent versions if needed/wanted -->
+        <jackson-bom.version>2.17.0</jackson-bom.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+
+            <!-- personal custom libs -->
+
+            <!--            <dependency>-->
+            <!--                <groupId>org.fve.customspringbootstarters</groupId>-->
+            <!--                <artifactId>custom-spring-boot-starter-general-utils</artifactId>-->
+            <!--                <version>1.0-SNAPSHOT</version>-->
+            <!--            </dependency>-->
+
+            <!--        <dependency>-->
+            <!--            <groupId>org.fve.customspringbootstarters</groupId>-->
+            <!--            <artifactId>custom-spring-boot-starter-general-jpa-contents</artifactId>-->
+            <!--            <version>1.0-SNAPSHOT</version>-->
+            <!--        </dependency>-->
+
+            <!--            <dependency>-->
+            <!--                <groupId>org.fve.customlibs</groupId>-->
+            <!--                <artifactId>wrapper-utility-java-libs</artifactId>-->
+            <!--                <version>1.0.0-SNAPSHOT</version>-->
+            <!--            </dependency>-->
+
+            <!--        apache -->
+
+            <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+            <!--        The Apache Commons IO library contains utility classes, stream implementations, file filters, file comparators, endian transformation classes, and much more.-->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${apache-commons-io.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+            <!--        The Apache Commons Collections package contains types that extend and augment the Java Collections Framework.-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${apache-commons-collections4.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+            <!--        The Commons Text library provides additions to the standard JDK text handling. It includes algorithms for string similarity and for calculating the distance between strings.-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>${apache-commons-text.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-math3</artifactId>
+                <version>${apache-commons-math3.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/commons-validator/commons-validator -->
+            <!--        Apache Commons Validator provides the building blocks for both client side validation and server side data validation. It may be used standalone or with a framework like Struts.-->
+            <dependency>
+                <groupId>commons-validator</groupId>
+                <artifactId>commons-validator</artifactId>
+                <version>${apache-commons-validator.version}</version>
+            </dependency>
+
+
+            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+            <!--        Guava is a suite of core and expanded libraries that include utility classes, Google's collections, I/O classes, and much more.-->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${google-guava.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.google.guava/guava-testlib -->
+            <!--        Guava testlib is a set of java classes used for more convenient unit testing - particularly to assist the tests for Guava itself.-->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava-testlib</artifactId>
+                <version>${google-guava.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305 -->
+            <!--        JSR305 Annotations for Findbugs-->
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>${findbugs.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.github.spotbugs/spotbugs-annotations -->
+            <!--        https://spotbugs.github.io/-->
+            <dependency>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-annotations</artifactId>
+                <version>${spotbugs-annotations.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations -->
+            <!--        Annotations for Error Prone, a static analysis tool for Java that catches common programming mistakes at compile-time.-->
+            <!--        https://errorprone.info/docs/installation-->
+            <dependency>
+                <groupId>com.google.errorprone</groupId>
+                <artifactId>error_prone_annotations</artifactId>
+                <version>${error_prone_annotations.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/io.github.wimdeblauwe/error-handling-spring-boot-starter -->
+            <!-- https://github.com/wimdeblauwe/error-handling-spring-boot-starter -->
+            <dependency>
+                <groupId>io.github.wimdeblauwe</groupId>
+                <artifactId>error-handling-spring-boot-starter</artifactId>
+                <version>${error-handling-spring-boot-starter.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/io.hypersistence/hypersistence-utils-hibernate-60 -->
+            <!-- https://github.com/vladmihalcea/hypersistence-utils -->
+            <dependency>
+                <groupId>io.hypersistence</groupId>
+                <artifactId>hypersistence-utils-hibernate-60</artifactId>
+                <version>${hypersistence-utils-hibernate-60.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/net.datafaker/datafaker -->
+            <dependency>
+                <groupId>net.datafaker</groupId>
+                <artifactId>datafaker</artifactId>
+                <version>${net.datafaker.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
+            <dependency>
+                <groupId>org.fusesource.jansi</groupId>
+                <artifactId>jansi</artifactId>
+                <version>${jansi.version}</version>
+            </dependency>
+
+            <!-- json -->
+
+            <!-- https://mvnrepository.com/artifact/org.glassfish/jakarta.json -->
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>jakarta.json</artifactId>
+                <version>${jakarta-json.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-mapstruct-binding</artifactId>
+                <version>${lombok-mapstruct-binding.version}</version>
+            </dependency>
+
+            <!-- modelmapper -->
+
+            <dependency>
+                <groupId>org.modelmapper</groupId>
+                <artifactId>modelmapper</artifactId>
+                <version>${modelmapper.version}</version>
+            </dependency>
+
+            <!-- JWT -->
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jsonwebtoken.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jsonwebtoken.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jsonwebtoken.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${auth0-java-jwt.version}</version>
+            </dependency>
 
             <!-- springdoc -->
             <!-- https://springdoc.org/ -->
@@ -63,7 +308,29 @@
                 <version>${springdoc.version}</version>
             </dependency>
 
+            <!-- Jasper Report dependencies-->
+            <dependency>
+                <groupId>net.sf.jasperreports</groupId>
+                <artifactId>jasperreports</artifactId>
+                <version>${net.sf.jasperreports.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.jasperreports</groupId>
+                <artifactId>jasperreports-fonts</artifactId>
+                <version>${net.sf.jasperreports.version}</version>
+            </dependency>
+
             <!-- template engines and mail -->
+
+            <!-- https://mvnrepository.com/artifact/org.junit-pioneer/junit-pioneer -->
+            <!--        JUnit 5 Extension Pack -->
+            <!--        https://junit-pioneer.org/docs/ -->
+            <dependency>
+                <groupId>org.junit-pioneer</groupId>
+                <artifactId>junit-pioneer</artifactId>
+                <version>${junit-pioneer.version}</version>
+            </dependency>
+
             <!-- https://mvnrepository.com/artifact/io.pebbletemplates/pebble-spring-boot-starter -->
             <!-- https://pebbletemplates.io/wiki/guide/spring-boot-integration/ -->
             <dependency>
@@ -72,6 +339,22 @@
                 <version>${pebble-spring-boot.version}</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.openapitools/jackson-databind-nullable -->
+            <dependency>
+                <groupId>org.openapitools</groupId>
+                <artifactId>jackson-databind-nullable</artifactId>
+                <version>${jackson-databind-nullable.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson/jackson-bom -->
+            <!-- https://github.com/FasterXML/jackson-bom -->
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson-bom.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
 
             <!-- spring boot official -->
 
@@ -110,99 +393,148 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-
         <!-- security -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-security</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.security</groupId>-->
+        <!--            <artifactId>spring-security-test</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+
+        <!-- JWT -->
+
+        <!--        <dependency>-->
+        <!--            <groupId>io.jsonwebtoken</groupId>-->
+        <!--            <artifactId>jjwt-api</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>io.jsonwebtoken</groupId>-->
+        <!--            <artifactId>jjwt-impl</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>io.jsonwebtoken</groupId>-->
+        <!--            <artifactId>jjwt-jackson</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.auth0</groupId>-->
+        <!--            <artifactId>java-jwt</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- oauth 2 security -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-client</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-oauth2-client</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- validation -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-validation</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- scheduling -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-quartz</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-quartz</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- mail -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-mail</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- template engines -->
 
-        <!-- https://mvnrepository.com/artifact/io.pebbletemplates/pebble-spring-boot-starter -->
-        <!-- https://pebbletemplates.io/wiki/guide/spring-boot-integration/ -->
-        <dependency>
-            <groupId>io.pebbletemplates</groupId>
-            <artifactId>pebble-spring-boot-starter</artifactId>
-        </dependency>
+        <!--            <dependency>-->
+        <!--                <groupId>org.springframework.boot</groupId>-->
+        <!--                <artifactId>spring-boot-starter-thymeleaf</artifactId>-->
+        <!--            </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mustache</artifactId>
-        </dependency>
+        <!--            <dependency>-->
+        <!--                <groupId>org.thymeleaf.extras</groupId>-->
+        <!--                <artifactId>thymeleaf-extras-springsecurity6</artifactId>-->
+        <!--            </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.pebbletemplates/pebble-spring-boot-starter &ndash;&gt;-->
+        <!--        &lt;!&ndash; https://pebbletemplates.io/wiki/guide/spring-boot-integration/ &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.pebbletemplates</groupId>-->
+        <!--            <artifactId>pebble-spring-boot-starter</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-mustache</artifactId>-->
+        <!--        </dependency>-->
+
+        <!-- web -->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-web</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.github.wimdeblauwe/error-handling-spring-boot-starter &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.github.wimdeblauwe</groupId>-->
+        <!--            <artifactId>error-handling-spring-boot-starter</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- springdoc -->
         <!-- https://springdoc.org/ -->
 
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>${springdoc.version}</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springdoc</groupId>-->
+        <!--            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>-->
+        <!--            <version>${springdoc.version}</version>-->
+        <!--        </dependency>-->
 
-        <!-- web -->
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springdoc</groupId>-->
+        <!--            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- reactive web -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-webflux</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webflux-api</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springdoc</groupId>-->
+        <!--            <artifactId>springdoc-openapi-starter-webflux-api</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springdoc</groupId>-->
+        <!--            <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- docker -->
 
@@ -215,94 +547,158 @@
 
         <!-- caching -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-cache</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-cache</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>javax.cache</groupId>-->
+        <!--            <artifactId>cache-api</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.ehcache</groupId>-->
+        <!--            <artifactId>ehcache</artifactId>-->
+        <!--            <classifier>jakarta</classifier>-->
+        <!--        </dependency>-->
 
         <!-- batch -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-batch</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-batch</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.batch</groupId>
-            <artifactId>spring-batch-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.batch</groupId>-->
+        <!--            <artifactId>spring-batch-test</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
 
         <!-- Database -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-data-jpa</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-rest</artifactId>
-        </dependency>
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.hypersistence/hypersistence-utils-hibernate-60 &ndash;&gt;-->
+        <!--        &lt;!&ndash; https://github.com/vladmihalcea/hypersistence-utils &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.hypersistence</groupId>-->
+        <!--            <artifactId>hypersistence-utils-hibernate-60</artifactId>-->
+        <!--        </dependency>-->
 
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-data-rest</artifactId>-->
+        <!--        </dependency>-->
+
+        <!-- jackson -->
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.fasterxml.jackson.core</groupId>-->
+        <!--            <artifactId>jackson-core</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-hibernate6 &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.fasterxml.jackson.datatype</groupId>-->
+        <!--            <artifactId>jackson-datatype-hibernate6</artifactId>-->
+        <!--        </dependency>-->
+
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.fasterxml.jackson.core</groupId>-->
+        <!--            <artifactId>jackson-annotations</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.fasterxml.jackson.module</groupId>-->
+        <!--            <artifactId>jackson-module-jakarta-xmlbind-annotations</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.fasterxml.jackson.core</groupId>-->
+        <!--            <artifactId>jackson-databind</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.fasterxml.jackson.datatype</groupId>-->
+        <!--            <artifactId>jackson-datatype-jsr310</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-guava &ndash;&gt;-->
+        <!--        &lt;!&ndash;        Add-on datatype-support module for Jackson (https://github.com/FasterXML/jackson) that handles Guava (https://github.com/google/guava) types (currently mostly just collection ones)&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.fasterxml.jackson.datatype</groupId>-->
+        <!--            <artifactId>jackson-datatype-guava</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.openapitools/jackson-databind-nullable &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.openapitools</groupId>-->
+        <!--            <artifactId>jackson-databind-nullable</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- liquibase -->
 
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.liquibase</groupId>-->
+        <!--            <artifactId>liquibase-core</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- h2 -->
 
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.h2database</groupId>-->
+        <!--            <artifactId>h2</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
 
         <!-- mysql -->
 
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.mysql</groupId>-->
+        <!--            <artifactId>mysql-connector-j</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>mysql</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.testcontainers</groupId>-->
+        <!--            <artifactId>mysql</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
         <!-- oracledb -->
 
-        <dependency>
-            <groupId>com.oracle.database.jdbc</groupId>
-            <artifactId>ojdbc11</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.oracle.database.jdbc</groupId>-->
+        <!--            <artifactId>ojdbc11</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>oracle-free</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.testcontainers</groupId>-->
+        <!--            <artifactId>oracle-free</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
         <!-- postgresql -->
 
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.postgresql</groupId>-->
+        <!--            <artifactId>postgresql</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.testcontainers</groupId>-->
+        <!--            <artifactId>postgresql</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
         <!-- spring runtime config stuff -->
 
@@ -314,121 +710,250 @@
 
         <!-- event messaging services -->
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-bus</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-bus</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-stream</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-test-binder</artifactId>
-            <scope>test</scope>
-        </dependency>
-
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-stream-test-binder</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
         <!-- kafka -->
 
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-streams</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.kafka</groupId>-->
+        <!--            <artifactId>kafka-streams</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.kafka</groupId>-->
+        <!--            <artifactId>spring-kafka</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-binder-kafka</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-stream-binder-kafka</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.kafka</groupId>-->
+        <!--            <artifactId>spring-kafka-test</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>kafka</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.testcontainers</groupId>-->
+        <!--            <artifactId>kafka</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
         <!-- rabbitmq -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-amqp</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.amqp</groupId>
-            <artifactId>spring-rabbit-stream</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.amqp</groupId>-->
+        <!--            <artifactId>spring-rabbit-stream</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-binder-kafka-streams</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-stream-binder-kafka-streams</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-stream-binder-rabbit</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.amqp</groupId>
-            <artifactId>spring-rabbit-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.amqp</groupId>-->
+        <!--            <artifactId>spring-rabbit-test</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>rabbitmq</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.testcontainers</groupId>-->
+        <!--            <artifactId>rabbitmq</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
 
         <!-- utils -->
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
 
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305 &ndash;&gt;-->
+        <!--        &lt;!&ndash;        JSR305 Annotations for Findbugs&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.google.code.findbugs</groupId>-->
+        <!--            <artifactId>jsr305</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.github.spotbugs/spotbugs-annotations &ndash;&gt;-->
+        <!--        &lt;!&ndash;        https://spotbugs.github.io/&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.github.spotbugs</groupId>-->
+        <!--            <artifactId>spotbugs-annotations</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations &ndash;&gt;-->
+        <!--        &lt;!&ndash;        Annotations for Error Prone, a static analysis tool for Java that catches common programming mistakes at compile-time.&ndash;&gt;-->
+        <!--        &lt;!&ndash;        https://errorprone.info/docs/installation&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.google.errorprone</groupId>-->
+        <!--            <artifactId>error_prone_annotations</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        apache -->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/commons-io/commons-io &ndash;&gt;-->
+        <!--        &lt;!&ndash;        The Apache Commons IO library contains utility classes, stream implementations, file filters, file comparators, endian transformation classes, and much more.&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>commons-io</groupId>-->
+        <!--            <artifactId>commons-io</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 &ndash;&gt;-->
+        <!--        &lt;!&ndash;        Apache Commons Lang, a package of Java utility classes for the classes that are in java.lang's hierarchy, or are considered to be so standard as to justify existence in java.lang.&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.commons</groupId>-->
+        <!--            <artifactId>commons-lang3</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 &ndash;&gt;-->
+        <!--        &lt;!&ndash;        The Apache Commons Collections package contains types that extend and augment the Java Collections Framework.&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.commons</groupId>-->
+        <!--            <artifactId>commons-collections4</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.commons/commons-text &ndash;&gt;-->
+        <!--        &lt;!&ndash;        The Commons Text library provides additions to the standard JDK text handling. It includes algorithms for string similarity and for calculating the distance between strings.&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.commons</groupId>-->
+        <!--            <artifactId>commons-text</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.commons/commons-math3 &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.commons</groupId>-->
+        <!--            <artifactId>commons-math3</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/commons-validator/commons-validator &ndash;&gt;-->
+        <!--        &lt;!&ndash;        Apache Commons Validator provides the building blocks for both client side validation and server side data validation. It may be used standalone or with a framework like Struts.&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>commons-validator</groupId>-->
+        <!--            <artifactId>commons-validator</artifactId>-->
+        <!--        </dependency>-->
+
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.google.guava/guava &ndash;&gt;-->
+        <!--        &lt;!&ndash;        Guava is a suite of core and expanded libraries that include utility classes, Google's collections, I/O classes, and much more.&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.google.guava</groupId>-->
+        <!--            <artifactId>guava</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.google.guava/guava-testlib &ndash;&gt;-->
+        <!--        &lt;!&ndash;        Guava testlib is a set of java classes used for more convenient unit testing - particularly to assist the tests for Guava itself.&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.google.guava</groupId>-->
+        <!--            <artifactId>guava-testlib</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>net.datafaker</groupId>-->
+        <!--            <artifactId>datafaker</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.modelmapper</groupId>-->
+        <!--            <artifactId>modelmapper</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.mapstruct</groupId>-->
+        <!--            <artifactId>mapstruct</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.projectlombok</groupId>-->
+        <!--            <artifactId>lombok-mapstruct-binding</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.mapstruct</groupId>-->
+        <!--            <artifactId>mapstruct-processor</artifactId>-->
+        <!--        </dependency>-->
+
+
+        <!-- JSON -->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.google.code.gson/gson &ndash;&gt;-->
+        <!--        &lt;!&ndash;        Gson is a Java library that can be used to convert Java Objects into their JSON representation. It can also be used to convert a JSON string to an equivalent Java object.&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.google.code.gson</groupId>-->
+        <!--            <artifactId>gson</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.glassfish/jakarta.json &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.glassfish</groupId>-->
+        <!--            <artifactId>jakarta.json</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/jakarta.json/jakarta.json-api &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>jakarta.json</groupId>-->
+        <!--            <artifactId>jakarta.json-api</artifactId>-->
+        <!--        </dependency>-->
+
+
         <!-- documentation -->
 
-        <dependency>
-            <groupId>org.springframework.restdocs</groupId>
-            <artifactId>spring-restdocs-mockmvc</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.restdocs</groupId>-->
+        <!--            <artifactId>spring-restdocs-mockmvc</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
         <!-- testing -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-testcontainers</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-testcontainers</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>io.projectreactor</groupId>-->
+        <!--            <artifactId>reactor-test</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.testcontainers</groupId>-->
+        <!--            <artifactId>junit-jupiter</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -436,127 +961,227 @@
             <scope>test</scope>
         </dependency>
 
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params &ndash;&gt;-->
+        <!--        &lt;!&ndash;        JUnit Jupiter extension for running parameterized tests.&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.junit.jupiter</groupId>-->
+        <!--            <artifactId>junit-jupiter-params</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.junit-pioneer/junit-pioneer &ndash;&gt;-->
+        <!--        &lt;!&ndash;        JUnit 5 Extension Pack &ndash;&gt;-->
+        <!--        &lt;!&ndash;        https://junit-pioneer.org/docs/ &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.junit-pioneer</groupId>-->
+        <!--            <artifactId>junit-pioneer</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+
+        <!--        https://youtrack.jetbrains.com/issue/IDEA-231927-->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.assertj/assertj-guava &ndash;&gt;-->
+        <!--        &lt;!&ndash;        Rich and fluent assertions for testing for Guava&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.assertj</groupId>-->
+        <!--            <artifactId>assertj-guava</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.rest-assured/rest-assured &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.rest-assured</groupId>-->
+        <!--            <artifactId>rest-assured</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.rest-assured/spring-mock-mvc &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.rest-assured</groupId>-->
+        <!--            <artifactId>spring-mock-mvc</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+
         <!-- tracing -->
 
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-prometheus</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>io.micrometer</groupId>-->
+        <!--            <artifactId>micrometer-registry-prometheus</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-tracing-bridge-brave</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>io.micrometer</groupId>-->
+        <!--            <artifactId>micrometer-tracing-bridge-brave</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>io.zipkin.reporter2</groupId>
-            <artifactId>zipkin-reporter-brave</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>io.zipkin.reporter2</groupId>-->
+        <!--            <artifactId>zipkin-reporter-brave</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- spring modulith -->
 
-        <dependency>
-            <groupId>org.springframework.modulith</groupId>
-            <artifactId>spring-modulith-starter-core</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.modulith</groupId>-->
+        <!--            <artifactId>spring-modulith-starter-core</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.modulith</groupId>
-            <artifactId>spring-modulith-starter-jpa</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.modulith</groupId>-->
+        <!--            <artifactId>spring-modulith-starter-jpa</artifactId>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.modulith</groupId>
-            <artifactId>spring-modulith-actuator</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.modulith</groupId>-->
+        <!--            <artifactId>spring-modulith-actuator</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.modulith</groupId>
-            <artifactId>spring-modulith-observability</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.modulith</groupId>-->
+        <!--            <artifactId>spring-modulith-observability</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.modulith</groupId>
-            <artifactId>spring-modulith-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.modulith</groupId>-->
+        <!--            <artifactId>spring-modulith-starter-test</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+
+        <!-- logging -->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-aop</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.aspectj/aspectjrt &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.aspectj</groupId>-->
+        <!--            <artifactId>aspectjrt</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
+
+        <!-- Ansi color logging -->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.fusesource.jansi/jansi &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.fusesource.jansi</groupId>-->
+        <!--            <artifactId>jansi</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; Jasper Report dependencies&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>net.sf.jasperreports</groupId>-->
+        <!--            <artifactId>jasperreports</artifactId>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>net.sf.jasperreports</groupId>-->
+        <!--            <artifactId>jasperreports-fonts</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- microservices specifiek -->
 
         <!-- discovery-server specific -->
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- for all microservices to register in the discovery-server -->
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- load balancing -->
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-loadbalancer</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- gateway specific -->
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway-mvc</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-gateway-mvc</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- reactive gateway -->
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
-
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-gateway</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- for all microservices to connect to admin-server -->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>de.codecentric</groupId>-->
+        <!--            <artifactId>spring-boot-admin-starter-client</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- connect services with each other -->
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-openfeign</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- for only the admin-server -->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-server</artifactId>
-        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>de.codecentric</groupId>-->
+        <!--            <artifactId>spring-boot-admin-starter-server</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- config server only -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-server</artifactId>
-        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-config-server</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- for all microservices that want to connect to config-server -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-config</artifactId>-->
+        <!--        </dependency>-->
 
     </dependencies>
 
-
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springdoc</groupId>
+                    <artifactId>springdoc-openapi-maven-plugin</artifactId>
+                    <version>1.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -569,33 +1194,128 @@
                         </exclude>
                     </excludes>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!--  mvn spring-boot:build-info -->
+                            <goal>build-info</goal>
+                        </goals>
+                        <configuration>
+                            <!-- all these properties will be generated into a build-info.properties file
+                                 and will be available on /actuator/info endpoint.
+                            -->
+                            <additionalProperties>
+                                <encoding.source>${project.build.sourceEncoding}</encoding.source>
+                                <encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>
+                                <java.source>${maven.compiler.source}</java.source>
+                                <java.target>${maven.compiler.target}</java.target>
+
+                                <spring-boot-version>${spring-boot.version}</spring-boot-version>
+                                <spring-cloud-version>${spring-cloud.version}</spring-cloud-version>
+
+                                <app.project-finalName>${project.build.finalName}</app.project-finalName>
+                                <app.project-description>${project.description}</app.project-description>
+                                <app.project-spring-boot-version>${spring-boot.version}
+                                </app.project-spring-boot-version>
+                                <app.project-spring-cloud-version>${spring-cloud.version}
+                                </app.project-spring-cloud-version>
+
+                                <about.backendVersionNumber>${project.version}</about.backendVersionNumber>
+
+                            </additionalProperties>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
-            <!--			<plugin>-->
-            <!--				<groupId>org.asciidoctor</groupId>-->
-            <!--				<artifactId>asciidoctor-maven-plugin</artifactId>-->
-            <!--				<version>2.2.1</version>-->
-            <!--				<executions>-->
-            <!--					<execution>-->
-            <!--						<id>generate-docs</id>-->
-            <!--						<phase>prepare-package</phase>-->
-            <!--						<goals>-->
-            <!--							<goal>process-asciidoc</goal>-->
-            <!--						</goals>-->
-            <!--						<configuration>-->
-            <!--							<backend>html</backend>-->
-            <!--							<doctype>book</doctype>-->
-            <!--						</configuration>-->
-            <!--					</execution>-->
-            <!--				</executions>-->
-            <!--				<dependencies>-->
-            <!--					<dependency>-->
-            <!--						<groupId>org.springframework.restdocs</groupId>-->
-            <!--						<artifactId>spring-restdocs-asciidoctor</artifactId>-->
-            <!--						<version>${spring-restdocs.version}</version>-->
-            <!--					</dependency>-->
-            <!--				</dependencies>-->
-            <!--			</plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <!--                <version>3.8.1</version>-->
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <annotationProcessorPaths>
+                        <!--						https://www.baeldung.com/mapstruct-->
+                        <!--						https://kdrozd.pl/how-to-perform-a-partial-update-patch-with-explicit-null/-->
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>${lombok-mapstruct-binding.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <!--https://junit.org/junit5/docs/current/user-guide/#running-tests-build-maven -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                </configuration>
+            </plugin>
+
+            <!--            <plugin>-->
+            <!--                <groupId>org.asciidoctor</groupId>-->
+            <!--                <artifactId>asciidoctor-maven-plugin</artifactId>-->
+            <!--                <version>2.2.1</version>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>generate-docs</id>-->
+            <!--                        <phase>prepare-package</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>process-asciidoc</goal>-->
+            <!--                        </goals>-->
+            <!--                        <configuration>-->
+            <!--                            <backend>html</backend>-->
+            <!--                            <doctype>book</doctype>-->
+            <!--                        </configuration>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--                <dependencies>-->
+            <!--                    <dependency>-->
+            <!--                        <groupId>org.springframework.restdocs</groupId>-->
+            <!--                        <artifactId>spring-restdocs-asciidoctor</artifactId>-->
+            <!--                        <version>${spring-restdocs.version}</version>-->
+            <!--                    </dependency>-->
+            <!--                </dependencies>-->
+            <!--            </plugin>-->
 
         </plugins>
     </build>
@@ -623,7 +1343,6 @@
                     <plugin>
                         <groupId>org.springdoc</groupId>
                         <artifactId>springdoc-openapi-maven-plugin</artifactId>
-                        <version>1.4</version>
                         <executions>
                             <execution>
                                 <id>integration-test</id>
@@ -632,6 +1351,108 @@
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>customasciidoc</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctor-maven-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>generate-docs</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>process-asciidoc</goal>
+                                </goals>
+                                <configuration>
+                                    <!-- ${basedir}/src/main/asciidoc -->
+                                    <sourceDocumentName>index.adoc</sourceDocumentName>
+                                    <outputDirectory>target/generated-docs</outputDirectory>
+                                    <backend>html5</backend>
+                                    <doctype>book</doctype>
+                                    <attributes>
+                                        <!--  <snippets>${project.build.directory}/snippets</snippets>-->
+                                        <snippets>${project.build.directory}/generated-snippets</snippets>
+                                        <revnumber>${project.version}</revnumber>
+                                        <revdate>${maven.build.timestamp}</revdate>
+                                        <organization>${project.organization.name}</organization>
+                                        <author>Filip Vanden Eynde</author>
+                                        <email>filipve1994@gmail.com</email>
+                                        <firstname>Filip</firstname>
+                                        <lastname>Vanden Eynde</lastname>
+                                        <!--  -->
+                                        <toc>left</toc>
+                                        <toclevels>3</toclevels>
+                                        <numbered></numbered>
+                                        <hardbreaks></hardbreaks>
+                                        <sectlinks></sectlinks>
+                                        <sectanchors></sectanchors>
+                                        <sectnums></sectnums>
+                                        <sectnumlevels>5</sectnumlevels>
+                                        <icons>font</icons>
+                                        <embedAssets>true</embedAssets>
+                                        <!-- <theme>flask</theme>-->
+                                        <stylesheet>${basedir}/src/main/asciidoc/mystyles.css</stylesheet>
+                                    </attributes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.springframework.restdocs</groupId>
+                                <artifactId>spring-restdocs-asciidoctor</artifactId>
+                                <version>${spring-restdocs.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>unit-tests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <skip>false</skip>
+                            <groups>unit</groups>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>integration-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <skip>false</skip>
+                            <includes>
+                                <include>**/*IntegrationTest.java</include>
+                            </includes>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>

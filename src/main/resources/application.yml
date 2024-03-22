@@ -1,14 +1,365 @@
+# https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#appendix.application-properties
 server:
   address: localhost
   # Random/Dynamic Port:
   # port: 0
   # Random port in a custom predefined range:
   port: ${random.int(8020,8030)}
+  #  port: 8080
   compression:
     enabled: true
+  error:
+    include-message: always
+    include-exception: true
+    include-binding-errors: always
+    whitelabel:
+      enabled: true
+  forward-headers-strategy: framework
+  shutdown: graceful
+  servlet:
+    encoding:
+      charset: UTF-8 #  Charset of HTTP requests and responses. Added to the "Content-Type" header if not set explicitly
+      enabled: true # Enable http encoding support
+      force: true
+  http2:
+    enabled: false
+
+#microservices
+eureka:
+  client:
+    allow-redirects: false
+    enabled: true
+  instance:
+    appname: unknown
+    hostname: localhost
+    namespace: eureka
+    prefer-ip-address: false
+
 
 spring:
   application:
     name: starter-app-micro-service
+    version: ^project.version^
+    admin:
+      enabled: true
+  profiles:
+    active: local-h2
   liquibase:
     enabled: false # default turning liquibase off
+  #  https://www.baeldung.com/docker-compose-support-spring-boot
+  #  https://spring.io/blog/2023/06/21/docker-compose-support-in-spring-boot-3-1
+  #  https://howtodoinjava.com/spring-boot/spring-boot-docker-compose/
+  docker:
+    compose:
+      enabled: false # docker default disabled
+  #      file: ./compose.yaml # choose another location => default root of the project
+  # global default settings for every type of db and profile in general
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        show_sql: false
+        use_sql_comments: false
+        format_sql: false
+        generate_statistics: false
+    #        # https://www.baeldung.com/spring-boot-h2-jdbcsqlsyntaxerrorexception-expected-identifier
+    #        globally_quoted_identifiers: true
+    generate-ddl: false
+    # https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.5-Release-Notes#hibernate-and-datasql
+    # https://stackoverflow.com/questions/67678311/spring-boot-is-not-creating-tables-automatically/67678945#67678945
+    # put it only on true when using a data.sql to insert data into the DB
+    defer-datasource-initialization: false
+    hibernate:
+      ddl-auto: none
+  jackson:
+    time-zone: "Europe/Brussels"
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+    visibility:
+      field: any
+      getter: none
+      setter: none
+      is-getter: none
+  thymeleaf:
+    cache: false
+  web:
+    locale: en
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        one-indexed-parameters: false
+        max-page-size: 2000
+    rest:
+      # defines that you should not expose the @repository
+      detection-strategy: annotated
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      isolation-level-for-create: default
+  #microservices
+  cloud:
+    gateway:
+      enabled: true
+#      routes:
+#        - id: service1
+#          uri: ''
+#          order: 1
+#          filters:
+#            - name: ''
+#              args: ''
+#          predicates:
+#            - name: ''
+#              args:
+#                - ''
+
+
+
+    config:
+      enabled: true
+      discovery:
+        enabled: true
+        service-id: config-server
+      name: config-server
+      password: examplepassword
+      username: exampleusername
+      uri: http://localhost:8888
+      server:
+        enabled: true
+        git:
+          clone-on-start: true
+          search-paths:
+            - config #folder name with config files
+          basedir: ./
+    discovery:
+      client:
+        health-indicator:
+          enabled: true
+        composite-indicator:
+          enabled: true
+      enabled: true
+    openfeign:
+      autoconfiguration:
+        jackson:
+          enabled: true
+      compression:
+        request:
+          enabled: true
+        response:
+          enabled: true
+      client:
+        refresh-enabled: true
+      http2client:
+        enabled: false
+      httpclient:
+        hc5:
+          enabled: true
+    loadbalancer:
+      enabled: true
+  boot:
+    admin:
+      client:
+        auto-registration: true
+        enabled: true
+      discovery:
+        enabled: true
+      hazelcast:
+        enabled: true
+      server:
+        enabled: true
+      ui:
+        available-languages: en,nl
+# https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#common-application-properties-cache
+#  cache:
+#    cache-names: users, examples
+#    caffeine.spec: maximumSize=1000,expireAfterAccess=60s
+
+#    redis:
+#      host: localhost
+#      port: 6379
+
+logging:
+  level:
+    root: info
+    org.springframework: INFO
+    org.springframework.security: debug
+    org:
+      fve:
+        springbootprojects: INFO
+      # Enable JPA / Hibernate debugging
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+  charset:
+    console: UTF-8
+    file: UTF-8
+  config:
+  file:
+    name: myapp.log
+    path: ./myapp.log
+  include-application-name: true
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %highlight(%.-1level) %cyan(%40.40logger{39}): %msg%n%throwable"
+    #    console: "%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd'T'HH:mm:ss.SSSXXX}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+    #    correlation:
+    dateformat: "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
+    file: "%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd'T'HH:mm:ss.SSSXXX}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+    level: "%5p"
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+    version: openapi_3_0
+  #    version: openapi_3_1
+  swagger-ui:
+    csrf:
+      enabled: false
+      use-local-storage: false
+      use-session-storage: false
+    try-it-out-enabled: true
+    path: /swagger-ui
+    groups-order: desc
+    operations-sorter: method
+    use-root-path: true
+    disable-swagger-default-url: true
+    enabled: true
+    syntax-highlight:
+      activated: true
+    display-request-duration: true
+  #    persist-authorization: true
+  show-login-endpoint: false
+  packages-to-scan: org.fve.springbootprojects
+  paths-to-match: /**
+  show-actuator: false
+
+
+
+#####
+# custom properties
+#####
+
+app:
+  description: @project.description@
+  version: @project.version@
+
+  jwt:
+    secretKey: 90c8c2c617816e6a2afe2c4ed8abcfeed5144a0d73a39648df3228690b64f45e
+    issuer: ${JWT_ISSUER:https://github.com/rimmelasghar}
+    expiration-milliseconds: 604800000
+    expirationMinute: 10
+  swagger:
+    contact-name: Filip VE
+    contact-mail: ${SWAGGER_CONTACT_MAIL:filipve@email.com}
+    contact-url: ${SWAGGER_CONTACT_URL:https://filipve.com}
+    name: ${SWAGGER_APP_NAME:Spring Boot Boilerplate Project}
+    description: "Spring Boot Boilerplate is a starter kit for developing production ready SpringBoot Applications. This project includes : Spring Boot(3.1.2), Spring Data JPA, Spring Validation, Spring Security + JWT Token, MySQL, Mapstruct, Lombok, Swagger "
+    version: ${SWAGGER_APP_VERSION:2.0.0}
+    license-url: ${SWAGGER_APP_LICENSE_URL:https://www.apache.org/licenses/LICENSE-2.0.html}
+    license: ${SWAGGER_APP_LICENSE:Apache 2.0}
+
+swagger:
+  contact-name: Filip VE
+  contact-mail: ${SWAGGER_CONTACT_MAIL:filipve@email.com}
+  contact-url: ${SWAGGER_CONTACT_URL:https://filipve.com}
+  app-name: ${SWAGGER_APP_NAME:Spring Boot Boilerplate Project}
+  app-description: "Spring Boot Boilerplate is a starter kit for developing production ready SpringBoot Applications. This project includes : Spring Boot(3.1.2), Spring Data JPA, Spring Validation, Spring Security + JWT Token, MySQL, Mapstruct, Lombok, Swagger "
+  app-version: ${SWAGGER_APP_VERSION:2.0.0}
+  app-license-url: ${SWAGGER_APP_LICENSE_URL:https://www.apache.org/licenses/LICENSE-2.0.html}
+  app-license: ${SWAGGER_APP_LICENSE:Apache 2.0}
+
+
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    auditevents:
+      enabled: true
+    conditions:
+      enabled: true
+    beans:
+      enabled: true
+    caches:
+      enabled: true
+    configprops:
+      enabled: true
+      show-values: never
+    env:
+      enabled: true
+      show-values: never
+    info:
+      enabled: true
+    liquibase:
+      enabled: true
+    logfile:
+      enabled: true
+      external-file: ./myapp.log
+    loggers:
+      enabled: true
+    mappings:
+      enabled: true
+    httpexchanges:
+      enabled: true
+    metrics:
+      enabled: true
+    quartz:
+      enabled: true
+    prometheus:
+      enabled: true
+    scheduledtasks:
+      enabled: true
+    startup:
+      enabled: true
+#    gateway:
+#      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      discovery:
+        enabled: true
+    enabled-by-default: true
+    jmx:
+      exposure:
+        include: "*"
+  auditevents:
+    enabled: true
+  tracing:
+    enabled: false
+  health:
+    db:
+      enabled: true
+    readinessstate:
+      enabled: true
+    defaults:
+      enabled: true
+    diskspace:
+      enabled: true
+    livenessstate:
+      enabled: true
+    mail:
+      enabled: true
+    ping:
+      enabled: true
+    rabbit:
+      enabled: true
+  info:
+    build:
+      enabled: true
+    defaults:
+      enabled: true
+    env:
+      enabled: true
+    git:
+      enabled: true
+      mode: full
+    java:
+      enabled: true
+    os:
+      enabled: true
