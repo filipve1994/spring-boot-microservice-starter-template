@@ -1,10 +1,10 @@
-package com.fve.springbootmavenstartertemplate;
+package org.fve.springbootprojects.springbootmicroservicestarterapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringbootmavenstartertemplateApplicationTests {
+class MicroserviceStarterApplicationTests {
 
 	@Test
 	void contextLoads() {

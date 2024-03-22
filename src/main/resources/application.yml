@@ -9,6 +9,6 @@ server:
 
 spring:
   application:
-    name: springbootmavenstartertemplate
+    name: starter-app-micro-service
   liquibase:
     enabled: false # default turning liquibase off

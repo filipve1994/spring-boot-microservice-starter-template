@@ -1,13 +1,13 @@
-package com.fve.springbootmavenstartertemplate;
+package org.fve.springbootprojects.springbootmicroservicestarterapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootmavenstartertemplateApplication {
+public class MicroserviceStarterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootmavenstartertemplateApplication.class, args);
+		SpringApplication.run(MicroserviceStarterApplication.class, args);
 	}
 
 }
