@@ -1,0 +1,14 @@
+server:
+  address: localhost
+  # Random/Dynamic Port:
+  # port: 0
+  # Random port in a custom predefined range:
+  port: ${random.int(8020,8030)}
+  compression:
+    enabled: true
+
+spring:
+  application:
+    name: springbootmavenstartertemplate
+  liquibase:
+    enabled: false # default turning liquibase off
