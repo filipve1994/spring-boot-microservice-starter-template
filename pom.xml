@@ -45,7 +45,7 @@
 
         <jsoup.version>1.17.2</jsoup.version>
 
-        <hypersistence-utils-hibernate-60.version>3.7.3</hypersistence-utils-hibernate-60.version>
+        <hypersistence-utils-hibernate-60.version>3.9.4</hypersistence-utils-hibernate-60.version>
 
         <error-handling-spring-boot-starter.version>4.2.0</error-handling-spring-boot-starter.version>
         <junit-pioneer.version>2.2.0</junit-pioneer.version>
