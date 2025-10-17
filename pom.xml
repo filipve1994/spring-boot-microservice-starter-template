@@ -67,7 +67,7 @@
 
         <net.sf.jasperreports.version>6.21.0</net.sf.jasperreports.version>
 
-        <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
+        <sonar-maven-plugin.version>3.11.0.3922</sonar-maven-plugin.version>
         <sonar.exclusions>
             **/dto/**,
             **/entity/**,
