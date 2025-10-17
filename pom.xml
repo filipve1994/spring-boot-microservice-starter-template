@@ -30,7 +30,7 @@
 
         <springdoc.version>2.4.0</springdoc.version>
 
-        <pebble-spring-boot.version>3.2.2</pebble-spring-boot.version>
+        <pebble-spring-boot.version>3.2.4</pebble-spring-boot.version>
 
         <modelmapper.version>3.2.0</modelmapper.version>
         <jsonwebtoken.version>0.12.5</jsonwebtoken.version>
