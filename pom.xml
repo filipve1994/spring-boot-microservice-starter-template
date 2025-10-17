@@ -63,7 +63,7 @@
         <spotbugs-annotations.version>4.8.2</spotbugs-annotations.version>
         <spotify-format-mvn-plugin.version></spotify-format-mvn-plugin.version>
 
-        <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
+        <jackson-databind-nullable.version>0.2.7</jackson-databind-nullable.version>
 
         <net.sf.jasperreports.version>6.21.0</net.sf.jasperreports.version>
 
