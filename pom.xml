@@ -56,7 +56,7 @@
         <apache-commons-math3.version>3.6.1</apache-commons-math3.version>
         <apache-commons-validator.version>1.7</apache-commons-validator.version>
 
-        <google-guava.version>33.1.0-jre</google-guava.version>
+        <google-guava.version>33.5.0-jre</google-guava.version>
         <findbugs.version>3.0.2</findbugs.version>
         <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
         <error_prone_annotations.version>2.23.0</error_prone_annotations.version>
