@@ -59,7 +59,7 @@
         <google-guava.version>33.5.0-jre</google-guava.version>
         <findbugs.version>3.0.2</findbugs.version>
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
-        <error_prone_annotations.version>2.23.0</error_prone_annotations.version>
+        <error_prone_annotations.version>2.42.0</error_prone_annotations.version>
         <spotbugs-annotations.version>4.9.8</spotbugs-annotations.version>
         <spotify-format-mvn-plugin.version></spotify-format-mvn-plugin.version>
 
