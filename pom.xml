@@ -33,7 +33,7 @@
         <pebble-spring-boot.version>3.2.4</pebble-spring-boot.version>
 
         <modelmapper.version>3.2.5</modelmapper.version>
-        <jsonwebtoken.version>0.12.5</jsonwebtoken.version>
+        <jsonwebtoken.version>0.13.0</jsonwebtoken.version>
         <net.datafaker.version>2.5.2</net.datafaker.version>
         <jansi.version>2.4.2</jansi.version>
         <jakarta-json.version>2.0.1</jakarta-json.version>
