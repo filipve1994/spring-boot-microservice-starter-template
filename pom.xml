@@ -196,7 +196,7 @@
             <!-- https://github.com/vladmihalcea/hypersistence-utils -->
             <dependency>
                 <groupId>io.hypersistence</groupId>
-                <artifactId>hypersistence-utils-hibernate-60</artifactId>
+                <artifactId>hypersistence-utils-hibernate-63</artifactId>
                 <version>${hypersistence-utils-hibernate-60.version}</version>
             </dependency>
 
