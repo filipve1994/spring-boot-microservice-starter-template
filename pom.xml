@@ -34,7 +34,7 @@
 
         <modelmapper.version>3.2.0</modelmapper.version>
         <jsonwebtoken.version>0.12.5</jsonwebtoken.version>
-        <net.datafaker.version>2.1.0</net.datafaker.version>
+        <net.datafaker.version>2.5.2</net.datafaker.version>
         <jansi.version>2.4.2</jansi.version>
         <jakarta-json.version>2.0.1</jakarta-json.version>
 
