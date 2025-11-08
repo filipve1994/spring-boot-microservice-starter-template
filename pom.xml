@@ -50,7 +50,7 @@
         <error-handling-spring-boot-starter.version>4.6.0</error-handling-spring-boot-starter.version>
         <junit-pioneer.version>2.3.0</junit-pioneer.version>
 
-        <apache-commons-io.version>2.20.0</apache-commons-io.version>
+        <apache-commons-io.version>2.21.0</apache-commons-io.version>
         <apache-commons-collections4.version>4.5.0</apache-commons-collections4.version>
         <apache-commons-text.version>1.14.0</apache-commons-text.version>
         <apache-commons-math3.version>3.6.1</apache-commons-math3.version>
