@@ -75,7 +75,7 @@
         </sonar.exclusions>
 
         <!-- override official spring-boot-starter-parent versions if needed/wanted -->
-        <jackson-bom.version>2.20.0</jackson-bom.version>
+        <jackson-bom.version>2.20.1</jackson-bom.version>
     </properties>
 
     <dependencyManagement>
